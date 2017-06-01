@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: vantiv-ecomm 
+spec:
+  containers:
+    - name: ecomm-web-app 
+      image: httpd 
+      env:
+        - name: SECRET_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: ecomm-user-pass 
+              key: ecomm_user.txt 
+        - name: SECRET_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: ecomm-user-pass 
+              key: ecomm_pass.txt 
+  restartPolicy: Never
